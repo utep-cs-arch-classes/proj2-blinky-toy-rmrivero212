@@ -5,10 +5,9 @@
 #define LED_GREEN BIT6
 #define LEDS (BIT0 | BIT6)
 
-extern unsigned char red_on;
-extern unsigned char led_on;
+extern unsigned char toggle;
 
 void led_init();
-void led_update();
+void led_update(char val);
 
 #endif
