@@ -2,32 +2,34 @@
 #include "stateMachines.h"
 #include "led.h"
 
+static char state = 0;
 
-void dimming_state(){
-  led_update(1);
-}
 void state_advance(){
-  static char on = 0;
+  static char toggle = 0;
   
-  if(on){
-    led_update(on);
-    on = 0;
-  }
-  else{
-    led_update(on);
-    on = 1;
+  switch(state){
+  case 0:
+    if(toggle){
+      led_update(toggle);
+      toggle = 0;
+      break;
+    }
+    else{
+      led_update(toggle);
+      toggle = 1;
+      break;
+    }
+  case 1:
+    led_update(1);
+    break;
   }
 }
 
 void change_dimming(){
-  static char change = 0;
-
-  if(change){
-    dimming_state();
-    change = 0;
+  if(state){
+    state = 0;
   }
   else{
-    state_advance();
-    change = 1;
+    state = 1;
   }
 }

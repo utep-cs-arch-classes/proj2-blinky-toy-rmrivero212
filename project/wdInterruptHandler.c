@@ -8,7 +8,7 @@ __interrupt_vec(WDT_VECTOR) WDT(){
   static char state_count = 0;
   
   if(++blink_count == 2){
-    dimming_state();
+    state_advance();
     blink_count = 0;
   }
   

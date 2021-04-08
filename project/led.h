@@ -9,5 +9,6 @@ extern unsigned char toggle;
 
 void led_init();
 void led_update(char val);
+void led_switch_update();
 
 #endif

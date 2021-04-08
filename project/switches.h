@@ -1,15 +1,13 @@
 #ifndef switches_included
 #define switches_included
 
-#define SW1 0x08
-#define SW2 0x04
-#define SW3 0x02
-#define SW4 0x01
+#define SW1 BIT0
 
-#define SWITCHES 0x0f
+#define SWITCHES BIT0
 
 void switch_init();
 void switch_interrupt_handler();
 
+extern char switch_state_down, switch_state_changed;
 
 #endif
