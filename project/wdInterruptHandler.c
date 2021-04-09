@@ -3,7 +3,7 @@
 
 void
 __interrupt_vec(WDT_VECTOR) WDT(){
-  
+    
   static char blink_count = 0;
   static char state_count = 0;
   
@@ -17,3 +17,4 @@ __interrupt_vec(WDT_VECTOR) WDT(){
     state_count = 0;
   }
 }
+
