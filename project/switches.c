@@ -1,6 +1,7 @@
 #include <msp430.h>
 #include "switches.h"
 #include "led.h"
+#include "buzzer.h"
 
 char switch_state_down, switch_state_changed;
 
@@ -29,9 +30,22 @@ switch_interrupt_handler()
 {
   char val = switch_update_interrupt_sense();
 
-  
-  switch_state_down = (val & SW0) ? 0 : 1;
-  switch_state_changed = 1;
-  led_switch_update();
-  
+  if(!(val & SW0)){
+    switch_state_down = (val & SW0) ? 0 : 1;
+    switch_state_changed = 1;
+    buzzer_set_period(d1 * 200);
+    led_switch_update();
+  }
+  else if(!(val & SW1)){
+    switch_state_down = (val & SW1) ? 0: 1;
+    switch_state_changed = 1;
+    buzzer_set_period(c1 * 200);
+    led_switch_update();
+  }
+  else if(!(val & (SW2 | SW3))){
+    switch_state_down = (val & (SW2 | SW3)) ? 0 : 1;
+    switch_state_changed = 1;
+    buzzer_set_period(e2 * 200);
+    led_switch_update();
+  }
 }

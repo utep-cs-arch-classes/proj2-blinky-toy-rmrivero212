@@ -20,8 +20,8 @@ void state_advance(){
       break;
     }
   case 1:
-    led_update(1);
-    break;
+      led_update(1);
+      break;
   }
 }
 
